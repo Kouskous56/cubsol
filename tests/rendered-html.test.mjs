@@ -1,29 +1,58 @@
 import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
+import { once } from "node:events";
+import { createServer } from "node:net";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+const root = fileURLToPath(new URL("../", import.meta.url));
+const nextBin = fileURLToPath(
+  import.meta.resolve("next/dist/bin/next", import.meta.url),
+);
 
-  return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
+async function reservePort() {
+  const server = createServer();
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  const address = server.address();
+  assert(address && typeof address === "object");
+  const { port } = address;
+  server.close();
+  await once(server, "close");
+  return port;
 }
 
-test("server-renders the CubSol foundation", async () => {
-  const response = await render();
+async function waitForServer(url, processOutput) {
+  const deadline = Date.now() + 30_000;
+  while (Date.now() < deadline) {
+    try {
+      return await fetch(url, { headers: { accept: "text/html" } });
+    } catch {
+      await new Promise((resolve) => setTimeout(resolve, 150));
+    }
+  }
+  throw new Error(`Next.js did not start in time.\n${processOutput.join("")}`);
+}
+
+test("production Next.js server renders the CubSol foundation", async (context) => {
+  const port = await reservePort();
+  const output = [];
+  const server = spawn(
+    process.execPath,
+    [nextBin, "start", "--hostname", "127.0.0.1", "--port", String(port)],
+    {
+      cwd: root,
+      env: { ...process.env, NODE_ENV: "production" },
+      stdio: ["ignore", "pipe", "pipe"],
+      windowsHide: true,
+    },
+  );
+
+  server.stdout.on("data", (chunk) => output.push(chunk.toString()));
+  server.stderr.on("data", (chunk) => output.push(chunk.toString()));
+  context.after(() => server.kill());
+
+  const response = await waitForServer(`http://127.0.0.1:${port}/`, output);
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 

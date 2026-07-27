@@ -7,8 +7,9 @@ từng bước trên mô hình 3D.
 ## Trạng thái
 
 Tuần 1 đã thiết lập nền tảng dự án và giao diện responsive. Tuần 2 hoàn thiện
-domain move engine, WCA notation và validator vật lý cho Rubik 3x3. Solver,
-camera và Three.js thuộc các giai đoạn tiếp theo.
+domain move engine, WCA notation và validator vật lý cho Rubik 3x3. Tuần 2.5
+chuẩn hóa runtime Next.js để triển khai trực tiếp trên Vercel. Solver, camera và
+Three.js thuộc các giai đoạn tiếp theo.
 
 ## Yêu cầu
 
@@ -26,6 +27,14 @@ pnpm lint
 pnpm test
 pnpm build
 ```
+
+## Triển khai Vercel
+
+Import repository `Kouskous56/cubsol` vào Vercel và giữ Root Directory ở thư mục
+gốc. Vercel tự nhận diện Next.js, dùng pnpm từ `packageManager` và tạo Preview
+Deployment cho pull request. Dự án hiện không cần biến môi trường để build.
+
+Không commit thư mục `.vercel`, token hoặc các tệp `.env*`.
 
 Nếu vừa cài Git, Node hoặc GitHub CLI trên Windows, hãy mở terminal mới để PATH
 được nạp lại. Hướng dẫn và chẩn đoán chi tiết nằm tại

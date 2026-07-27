@@ -2,8 +2,9 @@
 
 ## Quyết định nền tảng
 
-CubSol giữ `vinext + Vite` làm lớp runtime và triển khai Sites. Phần nghiệp vụ
-được tách khỏi framework để có thể chuyển sang Vite SPA thuần nếu cần.
+CubSol dùng Next.js App Router làm lớp runtime và Vercel làm nền tảng triển khai.
+Phần nghiệp vụ được tách khỏi framework để có thể thay đổi presentation/runtime
+mà không tác động đến move engine, notation parser hay validator.
 
 ## Ranh giới phụ thuộc
 
@@ -17,7 +18,7 @@ Presentation → Application → Domain
 - `src/application`: điều phối use case và trạng thái ứng dụng.
 - `src/infrastructure`: adapter cho solver, xử lý ảnh, lưu trữ và renderer.
 - `src/presentation`: component và hành vi giao diện.
-- `app`: điểm vào của vinext, metadata và layout.
+- `app`: điểm vào của Next.js App Router, metadata và layout.
 
 Domain không được import từ Application, Infrastructure hoặc Presentation.
 Infrastructure triển khai interface do Application/Domain định nghĩa, không
