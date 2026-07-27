@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "doctor": "node scripts/check-env.mjs",
     "start": "vinext start",
     "typecheck": "tsc --noEmit --incremental false",
     "test": "pnpm run test:unit && pnpm run build && node --test tests/rendered-html.test.mjs",

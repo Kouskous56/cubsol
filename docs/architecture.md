@@ -29,6 +29,8 @@ Infrastructure triển khai interface do Application/Domain định nghĩa, khô
 - Màu: `white, red, green, yellow, orange, blue`.
 - Mỗi mặt là tuple bất biến gồm đúng 9 sticker.
 - Thứ tự solver: `U → R → F → D → L → B`.
+- Serializer ánh xạ sticker sang ký hiệu mặt bằng màu của sáu tâm và từ chối
+  các tâm trùng màu.
 - `currentStep` về sau biểu thị số move đã hoàn tất và có miền
   `0..solutionMoves.length`.
 

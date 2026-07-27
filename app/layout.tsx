@@ -15,9 +15,22 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
-  const host = requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? "http";
-  const origin = `${protocol}://${host}`;
+  const forwardedHost = requestHeaders.get("x-forwarded-host");
+  const host =
+    forwardedHost?.split(",")[0]?.trim() ??
+    requestHeaders.get("host") ??
+    "localhost:3000";
+  const forwardedProtocol = requestHeaders
+    .get("x-forwarded-proto")
+    ?.split(",")[0]
+    ?.trim();
+  const protocol = forwardedProtocol === "https" ? "https" : "http";
+  let origin = "http://localhost:3000";
+  try {
+    origin = new URL(`${protocol}://${host}`).origin;
+  } catch {
+    // Keep deterministic local metadata when proxy headers are malformed.
+  }
   const title = "CubSol — Giải Rubik 3x3 trực quan";
   const description =
     "Công cụ giải Rubik 3x3 riêng tư, trực quan và hoạt động ngay trên thiết bị của bạn.";
@@ -37,7 +50,13 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       type: "website",
-      images: [{ url: new URL("/og.png", origin).toString(), width: 1536, height: 1024 }],
+      images: [
+        {
+          url: new URL("/og.png", origin).toString(),
+          width: 1536,
+          height: 1024,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",

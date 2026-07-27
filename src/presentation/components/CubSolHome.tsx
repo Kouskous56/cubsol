@@ -63,7 +63,11 @@ export function CubSolHome() {
           </div>
         </div>
 
-        <div className={styles.cubeStage} aria-label="Mô phỏng khối Rubik CubSol">
+        <div
+          className={styles.cubeStage}
+          role="img"
+          aria-label="Minh họa khối Rubik CubSol ba mặt màu tím, trắng và đỏ"
+        >
           <div className={styles.glow} />
           <div className={styles.cube} aria-hidden="true">
             {(["front", "top", "side"] as const).map((face) => (

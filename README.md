@@ -19,12 +19,17 @@ camera và Three.js thuộc các giai đoạn tiếp theo.
 
 ```bash
 pnpm install
+pnpm doctor
 pnpm dev
 pnpm typecheck
 pnpm lint
 pnpm test
 pnpm build
 ```
+
+Nếu vừa cài Git, Node hoặc GitHub CLI trên Windows, hãy mở terminal mới để PATH
+được nạp lại. Hướng dẫn và chẩn đoán chi tiết nằm tại
+[`docs/environment.md`](docs/environment.md).
 
 ## Cấu trúc chính
 

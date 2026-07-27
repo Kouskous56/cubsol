@@ -27,4 +27,15 @@ describe("CubSol store", () => {
     expect(state.solutionMoves).toEqual([]);
     expect(state.isPlaying).toBe(false);
   });
+
+  it("clears the active cube without retaining a mutable solution array", () => {
+    useCubSolStore.getState().setCubeState(createSolvedCube());
+    useCubSolStore.getState().clearSession();
+    const state = useCubSolStore.getState();
+
+    expect(state.cubeState).toBeNull();
+    expect(state.solutionMoves).toEqual([]);
+    expect(state.currentStep).toBe(0);
+    expect(state.errorMessage).toBeNull();
+  });
 });
