@@ -49,10 +49,9 @@ không được commit.
 
 ## OneDrive
 
-Repository hiện nằm trong OneDrive. Đây không phải lỗi, nhưng đồng bộ hàng chục
-nghìn file dependency có thể làm chậm watch/build. Nên đánh dấu `node_modules`
-và `.pnpm-store` là không cần đồng bộ, hoặc về sau chuyển repository sang một
-thư mục phát triển local không đồng bộ.
+Repository chính hiện nằm tại `E:\cubsol`, ngoài OneDrive. Nếu tạo thêm clone
+trong thư mục đồng bộ, hàng chục nghìn file dependency có thể làm chậm
+watch/build; không đồng bộ `node_modules` và `.pnpm-store`.
 
 Không xóa hay di chuyển workspace khi chưa có bản sao và chưa cập nhật remote.
 

@@ -60,8 +60,10 @@ serializer nền hiện tại là implementation solver cuối cùng.
 
 - GitHub Actions chạy install, type-check, lint, unit test, build và SSR smoke
   test trên mỗi push/PR.
-- Unit test domain kiểm tra 6 mặt, 54 sticker, phân bố 9 màu và thứ tự facelets.
+- Unit test domain kiểm tra 6 mặt, 54 sticker, tính bất biến runtime, phân bố
+  9 màu, thứ tự facelets, ánh xạ center colors và center trùng.
 - Unit test store kiểm tra trạng thái ban đầu và loại bỏ playback stale.
+- Component test kiểm tra trạng thái sản phẩm, navigation và nhãn accessibility.
 - SSR smoke test xác nhận nội dung CubSol, ngôn ngữ và loại bỏ starter metadata.
 
 ## 3. Kết quả kiểm chứng
@@ -70,7 +72,7 @@ serializer nền hiện tại là implementation solver cuối cùng.
 |---|---|
 | TypeScript | Đạt |
 | ESLint | Đạt |
-| Unit tests | 5/5 đạt |
+| Unit tests | 11/11 đạt |
 | SSR smoke test | 1/1 đạt |
 | Peer dependency check | Đạt |
 | Production build | Đạt |
@@ -89,12 +91,11 @@ serializer nền hiện tại là implementation solver cuối cùng.
 
 1. Runtime là vinext/Vite thay vì Vite SPA thuần. Rủi ro được giảm bằng việc cô
    lập domain và application khỏi framework.
-2. Workspace nằm trong OneDrive; dependency/cache lớn có thể gây đồng bộ chậm.
-   Các thư mục này đã được loại khỏi Git.
+2. Workspace đã chuyển sang `E:\cubsol`; rủi ro đồng bộ OneDrive đã được loại bỏ.
 3. Một số dependency gián tiếp của toolchain đã deprecated. Không nâng cưỡng ép
    vì bản hiện tại build ổn định.
-4. Serializer hiện là nền cho solved color scheme, chưa thay thế ánh xạ dựa trên
-   center colors và validator vật lý.
+4. Serializer đã ánh xạ theo center colors nhưng chưa thay thế validator vật lý
+   đầy đủ.
 5. UI cube hiện là minh họa CSS, không phải Three.js renderer.
 
 ## 6. Phạm vi chưa thực hiện

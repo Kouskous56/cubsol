@@ -7,7 +7,7 @@ export interface CubSolStore {
   cubeState: CubeState | null;
   status: AppStatus;
   errorMessage: string | null;
-  solutionMoves: string[];
+  solutionMoves: readonly string[];
   currentStep: number;
   isPlaying: boolean;
   setCubeState: (cubeState: CubeState) => void;
@@ -18,7 +18,7 @@ const initialState = {
   cubeState: null,
   status: "IDLE" as const,
   errorMessage: null,
-  solutionMoves: [] as string[],
+  solutionMoves: [] as readonly string[],
   currentStep: 0,
   isPlaying: false,
 };
