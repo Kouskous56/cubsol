@@ -22,6 +22,9 @@ export type FaceColors = readonly [
   CubeColor,
 ];
 export type CubeState = Readonly<Record<Face, FaceColors>>;
+export const MOVE_SUFFIXES = ["", "'", "2"] as const;
+export type MoveSuffix = (typeof MOVE_SUFFIXES)[number];
+export type Move = `${Face}${MoveSuffix}`;
 export type AppStatus =
   | "IDLE"
   | "VALIDATING"

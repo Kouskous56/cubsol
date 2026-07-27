@@ -31,6 +31,10 @@ Infrastructure triển khai interface do Application/Domain định nghĩa, khô
 - Thứ tự solver: `U → R → F → D → L → B`.
 - Serializer ánh xạ sticker sang ký hiệu mặt bằng màu của sáu tâm và từ chối
   các tâm trùng màu.
+- Move engine dùng tọa độ nguyên và vector pháp tuyến để sinh permutation cho
+  18 face moves, không phụ thuộc bảng ánh xạ hard-code.
+- Validator chuyển facelets sang 8 corner và 12 edge cubies, sau đó kiểm tra
+  orientation sum và permutation parity.
 - `currentStep` về sau biểu thị số move đã hoàn tất và có miền
   `0..solutionMoves.length`.
 

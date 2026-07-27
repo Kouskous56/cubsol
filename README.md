@@ -6,8 +6,8 @@ từng bước trên mô hình 3D.
 
 ## Trạng thái
 
-Tuần 1 đã thiết lập nền tảng dự án, kiến trúc module, Zustand store, kiểu dữ
-liệu Rubik ban đầu, kiểm thử và giao diện responsive. Solver, validator đầy đủ,
+Tuần 1 đã thiết lập nền tảng dự án và giao diện responsive. Tuần 2 hoàn thiện
+domain move engine, WCA notation và validator vật lý cho Rubik 3x3. Solver,
 camera và Three.js thuộc các giai đoạn tiếp theo.
 
 ## Yêu cầu

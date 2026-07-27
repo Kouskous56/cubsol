@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "check:boundaries": "node scripts/check-boundaries.mjs",
     "doctor": "node scripts/check-env.mjs",
     "start": "vinext start",
     "typecheck": "tsc --noEmit --incremental false",

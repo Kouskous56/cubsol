@@ -1,7 +1,8 @@
 import type { CubeColor, CubeState, FaceColors } from "./types";
+import { freezeCubeState } from "./freezeCubeState";
 
 const face = (color: CubeColor): FaceColors =>
-  Object.freeze([
+  [
     color,
     color,
     color,
@@ -11,10 +12,10 @@ const face = (color: CubeColor): FaceColors =>
     color,
     color,
     color,
-  ]) as FaceColors;
+  ] as FaceColors;
 
 export function createSolvedCube(): CubeState {
-  return Object.freeze({
+  return freezeCubeState({
     U: face("white"),
     R: face("red"),
     F: face("green"),
