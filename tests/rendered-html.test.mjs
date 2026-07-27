@@ -57,12 +57,13 @@ test("production Next.js server renders the CubSol foundation", async (context) 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<html lang="vi">/i);
+  assert.match(html, /<html\b[^>]*\blang="vi"/i);
   assert.match(html, /<title>CubSol — Giải Rubik 3x3 trực quan<\/title>/i);
   assert.match(html, /Từ khối Rubik đang rối/);
   assert.match(html, /Xử lý riêng tư trên thiết bị/);
   assert.match(html, /Quét camera/);
   assert.match(html, /Tải sáu ảnh/);
   assert.match(html, /Điền thủ công/);
+  assert.match(html, /Mở bảng nhập 6 mặt/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });

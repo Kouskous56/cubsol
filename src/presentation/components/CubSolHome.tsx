@@ -1,12 +1,13 @@
 "use client";
 
 import { useCubSolStore } from "@/src/application/store/cubsolStore";
+import { ManualCubeEditor } from "./ManualCubeEditor";
 import styles from "./CubSolHome.module.css";
 
 const methods = [
   ["01", "Quét camera", "Căn từng mặt vào lưới 3×3 và kiểm tra lại trước khi giải.", "Sắp ra mắt"],
   ["02", "Tải sáu ảnh", "Nhận diện màu ngay trên thiết bị, không gửi ảnh lên máy chủ.", "Sắp ra mắt"],
-  ["03", "Điền thủ công", "Chủ động nhập chính xác 54 ô màu bằng bảng màu trực quan.", "Ưu tiên tiếp theo"],
+  ["03", "Điền thủ công", "Chủ động nhập chính xác 54 ô màu bằng bảng màu trực quan.", "Sẵn sàng"],
 ] as const;
 
 const pipeline = [
@@ -35,7 +36,7 @@ export function CubSolHome() {
           <span className={styles.privacy}>
             <span aria-hidden="true">●</span> Xử lý riêng tư trên thiết bị
           </span>
-          <span className={styles.version}>Nền tảng · Tuần 1</span>
+          <span className={styles.version}>Manual Input · Tuần 3</span>
         </div>
       </header>
 
@@ -121,6 +122,8 @@ export function CubSolHome() {
           ))}
         </div>
       </section>
+
+      <ManualCubeEditor />
 
       <footer className={styles.footer}>
         <p>Đặt tính đúng, sự rõ ràng và quyền riêng tư làm nền tảng.</p>

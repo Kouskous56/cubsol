@@ -8,7 +8,7 @@ describe("CubSolHome", () => {
     useCubSolStore.getState().clearSession();
   });
 
-  it("presents the Week 1 product state without fake functional controls", () => {
+  it("presents the Week 3 manual input as an available workflow", () => {
     render(<CubSolHome />);
 
     expect(
@@ -19,7 +19,9 @@ describe("CubSolHome", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("Sẵn sàng nền tảng")).toBeInTheDocument();
     expect(screen.getAllByText("Sắp ra mắt")).toHaveLength(2);
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Mở bảng nhập 6 mặt" }),
+    ).toBeInTheDocument();
   });
 
   it("exposes meaningful navigation and cube illustration labels", () => {

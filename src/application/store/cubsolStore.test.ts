@@ -38,4 +38,48 @@ describe("CubSol store", () => {
     expect(state.currentStep).toBe(0);
     expect(state.errorMessage).toBeNull();
   });
+
+  it("starts a manual entry from a valid center-locked template", () => {
+    useCubSolStore.getState().startManualEntry();
+
+    expect(useCubSolStore.getState().cubeState).toEqual(createSolvedCube());
+  });
+
+  it("updates a non-center sticker immutably and clears stale validation", () => {
+    useCubSolStore.getState().startManualEntry();
+    const previous = useCubSolStore.getState().cubeState;
+
+    useCubSolStore.getState().setSticker("U", 0, "red");
+    const state = useCubSolStore.getState();
+
+    expect(state.cubeState).not.toBe(previous);
+    expect(state.cubeState?.U[0]).toBe("red");
+    expect(state.cubeState?.U[4]).toBe("white");
+    expect(Object.isFrozen(state.cubeState?.U)).toBe(true);
+  });
+
+  it("does not allow editing a center sticker", () => {
+    useCubSolStore.getState().startManualEntry();
+    const previous = useCubSolStore.getState().cubeState;
+
+    useCubSolStore.getState().setSticker("U", 4, "red");
+
+    expect(useCubSolStore.getState().cubeState).toBe(previous);
+  });
+
+  it("reports count errors and accepts a solved cube", () => {
+    useCubSolStore.getState().startManualEntry();
+    useCubSolStore.getState().setSticker("U", 0, "red");
+
+    expect(useCubSolStore.getState().validateCube()).toBe(false);
+    expect(
+      useCubSolStore.getState().validationIssues.some(
+        (issue) => issue.code === "COLOR_COUNT",
+      ),
+    ).toBe(true);
+
+    useCubSolStore.getState().setCubeState(createSolvedCube());
+    expect(useCubSolStore.getState().validateCube()).toBe(true);
+    expect(useCubSolStore.getState().validationIssues).toEqual([]);
+  });
 });

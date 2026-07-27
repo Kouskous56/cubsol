@@ -38,11 +38,14 @@ Infrastructure triển khai interface do Application/Domain định nghĩa, khô
   orientation sum và permutation parity.
 - `currentStep` về sau biểu thị số move đã hoàn tất và có miền
   `0..solutionMoves.length`.
+- Manual Input khởi tạo từ solved template với sáu tâm bị khóa. Mỗi lần sửa
+  sticker tạo một `CubeState` frozen mới; UI không được mutate tuple của Domain.
+- Application Store gọi validator Domain và chỉ giữ mã lỗi/kết quả. Presentation
+  chịu trách nhiệm dịch kết quả thành hướng dẫn sửa, không tự triển khai parity.
 
 ## Quyết định chưa triển khai
 
 - Solver WASM và JavaScript fallback.
-- Validator vật lý đầy đủ.
 - Three.js renderer và animation queue.
 - Image processor, camera và Web Worker.
 
