@@ -1,0 +1,309 @@
+.solving,
+.result {
+  margin-top: 32px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(6, 6, 14, 0.72);
+}
+
+.solving {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+}
+
+.solving > span {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  border: 2px solid rgba(169, 148, 255, 0.25);
+  border-top-color: var(--accent-soft);
+  border-radius: 50%;
+  animation: solver-spin 700ms linear infinite;
+}
+
+.solving strong {
+  color: #e8e5ff;
+  font-size: 14px;
+}
+
+.solving p {
+  margin: 4px 0 0;
+  color: #858493;
+  font-size: 12px;
+}
+
+.result {
+  padding: clamp(20px, 4vw, 38px);
+}
+
+.resultHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.resultHeader p {
+  margin: 0 0 9px;
+  color: #66dfad;
+  font-size: 10px;
+  font-weight: 720;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.resultHeader h3 {
+  max-width: 650px;
+  margin: 0;
+  font-size: clamp(25px, 3vw, 38px);
+  font-weight: 590;
+  letter-spacing: -0.045em;
+}
+
+.resultHeader dl {
+  display: flex;
+  gap: 28px;
+  margin: 0;
+}
+
+.resultHeader dl div {
+  min-width: 72px;
+}
+
+.resultHeader dt {
+  color: #777688;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.resultHeader dd {
+  margin: 5px 0 0;
+  font-family: var(--font-geist-mono);
+  font-size: 15px;
+}
+
+.moves {
+  display: flex;
+  gap: 7px;
+  margin: 30px 0 0;
+  padding: 20px 0;
+  overflow-x: auto;
+  border-block: 1px solid var(--line);
+  list-style: none;
+}
+
+.moves li {
+  display: grid;
+  min-width: 52px;
+  min-height: 58px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: #777688;
+}
+
+.moves li span {
+  font-family: var(--font-geist-mono);
+  font-size: 8px;
+}
+
+.moves li strong {
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.moves .completed {
+  border-color: rgba(69, 212, 157, 0.25);
+  color: #73dcb3;
+}
+
+.moves .active {
+  border-color: var(--accent-soft);
+  background: rgba(124, 92, 255, 0.18);
+  color: #fff;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.controls button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #d5d4df;
+  cursor: pointer;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+.controls .playButton {
+  border-color: transparent;
+  background: #f4f2ff;
+  color: #11101b;
+  font-weight: 720;
+}
+
+.progress {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+  color: #858493;
+  font-size: 11px;
+}
+
+.progress input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.algorithm {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 22px 0 0;
+}
+
+.algorithm span {
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: rgba(124, 92, 255, 0.16);
+  color: #bcaeff;
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+}
+
+.algorithm code {
+  color: #c6c5d0;
+  font-family: var(--font-geist-mono);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.tutorialLaunch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(6, 6, 14, 0.5);
+}
+
+.tutorialInfo strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #e8e5ff;
+  font-size: 15px;
+}
+
+.tutorialInfo p {
+  margin: 0;
+  color: #858493;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.tutorialStartButton {
+  flex: 0 0 auto;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #8064ff, #6544e7);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 720;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.tutorialStartButton:hover {
+  background: linear-gradient(135deg, #9178ff, #7655f0);
+}
+
+.tutorial {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(6, 6, 14, 0.5);
+}
+
+.tutorialHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.tutorialHeader p {
+  margin: 0 0 6px;
+  color: #66dfad;
+  font-size: 10px;
+  font-weight: 720;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tutorialHeader h3 {
+  margin: 0;
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 590;
+  letter-spacing: -0.03em;
+}
+
+.tutorialMeta {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  color: #777688;
+  font-size: 11px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.tutorialCubeContainer {
+  height: 280px;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #181828;
+  position: relative;
+  overflow: hidden;
+}
+
+.tutorialMoves {
+  margin-bottom: 16px;
+}
+
+.tutorialMoves .moves {
+  margin: 0;
+}
+
+@keyframes solver-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 650px) {
+  .resultHeader {
+    flex-direction: column;
+  }
+
+  .controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

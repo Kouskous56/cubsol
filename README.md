@@ -6,9 +6,13 @@ từng bước trên mô hình 3D.
 
 ## Trạng thái
 
-Tuần 1 đã thiết lập nền tảng dự án, kiến trúc module, Zustand store, kiểu dữ
-liệu Rubik ban đầu, kiểm thử và giao diện responsive. Solver, validator đầy đủ,
-camera và Three.js thuộc các giai đoạn tiếp theo.
+Tuần 1 đã thiết lập nền tảng dự án và giao diện responsive. Tuần 2 hoàn thiện
+domain move engine, WCA notation và validator vật lý cho Rubik 3x3. Tuần 2.5
+chuẩn hóa runtime Next.js để triển khai trực tiếp trên Vercel. Tuần 3 cung cấp
+bảng nhập màu thủ công 6 mặt, palette có thể thao tác bằng bàn phím và phản hồi
+validator trực tiếp. Tuần 4 tích hợp Kociemba WebAssembly trong Web Worker, xác
+minh lời giải bằng domain move engine và cung cấp trình điều khiển từng bước.
+Camera và Three.js thuộc các giai đoạn tiếp theo.
 
 ## Yêu cầu
 
@@ -26,6 +30,17 @@ pnpm lint
 pnpm test
 pnpm build
 ```
+
+Mô hình Rubik 3D dùng Three.js được tải theo chunk riêng, hỗ trợ tô sticker trực
+tiếp và tutorial animation tiến/lùi sau khi Kociemba xác minh lời giải.
+
+## Triển khai Vercel
+
+Import repository `Kouskous56/cubsol` vào Vercel và giữ Root Directory ở thư mục
+gốc. Vercel tự nhận diện Next.js, dùng pnpm từ `packageManager` và tạo Preview
+Deployment cho pull request. Dự án hiện không cần biến môi trường để build.
+
+Không commit thư mục `.vercel`, token hoặc các tệp `.env*`.
 
 Nếu vừa cài Git, Node hoặc GitHub CLI trên Windows, hãy mở terminal mới để PATH
 được nạp lại. Hướng dẫn và chẩn đoán chi tiết nằm tại

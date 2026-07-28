@@ -1,14 +1,20 @@
 import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useCubSolStore } from "@/src/application/store/cubsolStore";
 import { CubSolHome } from "./CubSolHome";
+
+vi.mock("./RubiksCube", () => ({
+  RubiksCube: vi.fn(() => (
+    <div data-testid="mock-rubiks-cube" />
+  )),
+}));
 
 describe("CubSolHome", () => {
   beforeEach(() => {
     useCubSolStore.getState().clearSession();
   });
 
-  it("presents the Week 1 product state without fake functional controls", () => {
+  it("presents the main heading and available methods", () => {
     render(<CubSolHome />);
 
     expect(
@@ -19,7 +25,9 @@ describe("CubSolHome", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("Sẵn sàng nền tảng")).toBeInTheDocument();
     expect(screen.getAllByText("Sắp ra mắt")).toHaveLength(2);
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(
+      screen.getByText("Điền thủ công"),
+    ).toBeInTheDocument();
   });
 
   it("exposes meaningful navigation and cube illustration labels", () => {
