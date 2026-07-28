@@ -1,7 +1,6 @@
 .page {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
   background:
     radial-gradient(circle at 72% 22%, rgba(93, 55, 188, 0.16), transparent 26rem),
     linear-gradient(180deg, #090912 0%, #07070e 100%);
@@ -293,7 +292,13 @@
   text-transform: uppercase;
 }
 
-.cardTop span:last-child { color: #9b8af3; }
+.cardTop span:last-child {
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: rgba(169, 148, 255, 0.12);
+  color: #c7bdff;
+  font-weight: 650;
+}
 .methodCard h3 { margin: 0 0 12px; font-size: 24px; font-weight: 580; letter-spacing: -0.035em; }
 .methodCard p { max-width: 300px; margin: 0; color: #858493; font-size: 14px; line-height: 1.65; }
 

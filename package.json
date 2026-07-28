@@ -20,9 +20,11 @@
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
+    "kociemba-wasm": "1.0.3",
     "next": "16.2.6",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "three": "^0.185.1",
     "zustand": "5.0.14"
   },
   "devDependencies": {
@@ -32,6 +34,7 @@
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "@types/three": "^0.185.1",
     "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
