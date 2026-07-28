@@ -36,7 +36,7 @@ export function CubSolHome() {
           <span className={styles.privacy}>
             <span aria-hidden="true">●</span> Xử lý riêng tư trên thiết bị
           </span>
-          <span className={styles.version}>Manual Input · Tuần 3</span>
+          <span className={styles.version}>WASM Solver · Tuần 4</span>
         </div>
       </header>
 
@@ -83,7 +83,7 @@ export function CubSolHome() {
             <span>01</span>
             <p>
               Mô hình 3D
-              <strong>Đang chuẩn bị</strong>
+              <strong>Sẵn sàng</strong>
             </p>
           </div>
         </div>

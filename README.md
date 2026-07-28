@@ -10,7 +10,9 @@ Tuần 1 đã thiết lập nền tảng dự án và giao diện responsive. Tu
 domain move engine, WCA notation và validator vật lý cho Rubik 3x3. Tuần 2.5
 chuẩn hóa runtime Next.js để triển khai trực tiếp trên Vercel. Tuần 3 cung cấp
 bảng nhập màu thủ công 6 mặt, palette có thể thao tác bằng bàn phím và phản hồi
-validator trực tiếp. Solver, camera và Three.js thuộc các giai đoạn tiếp theo.
+validator trực tiếp. Tuần 4 tích hợp Kociemba WebAssembly trong Web Worker, xác
+minh lời giải bằng domain move engine và cung cấp trình điều khiển từng bước.
+Camera và Three.js thuộc các giai đoạn tiếp theo.
 
 ## Yêu cầu
 
@@ -28,6 +30,9 @@ pnpm lint
 pnpm test
 pnpm build
 ```
+
+Mô hình Rubik 3D dùng Three.js được tải theo chunk riêng, hỗ trợ tô sticker trực
+tiếp và tutorial animation tiến/lùi sau khi Kociemba xác minh lời giải.
 
 ## Triển khai Vercel
 

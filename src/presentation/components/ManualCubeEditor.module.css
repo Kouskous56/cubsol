@@ -47,7 +47,8 @@
 }
 
 .launch button,
-.validateButton {
+.validateButton,
+.solveButton {
   min-height: 52px;
   padding: 0 22px;
   border: 0;
@@ -59,7 +60,7 @@
 }
 
 .editor {
-  padding: clamp(24px, 5vw, 56px);
+  padding: clamp(20px, 3vw, 32px);
 }
 
 .editorHeader {
@@ -67,7 +68,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 32px;
-  padding-bottom: 38px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -88,15 +89,40 @@
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 40px;
-  padding-top: 40px;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 24px;
+  padding-top: 24px;
 }
 
 .faces {
   display: grid;
   grid-template-columns: repeat(3, minmax(150px, 1fr));
   gap: 20px;
+}
+
+.cubeContainer {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #2c281a;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(169, 148, 255, 0.15);
+  border-top-color: #a994ff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .face,
@@ -180,7 +206,7 @@
 
 .controls {
   align-self: start;
-  padding: 24px;
+  padding: 20px;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: rgba(8, 8, 18, 0.82);
@@ -188,27 +214,35 @@
 
 .paletteOptions {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 .paletteButton {
   display: flex;
-  min-height: 42px;
+  min-height: 38px;
   align-items: center;
-  gap: 11px;
-  padding: 0 12px;
+  gap: 10px;
+  padding: 0 10px;
   border: 1px solid transparent;
+  border-left: 3px solid transparent;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.035);
   color: #b8b7c4;
   cursor: pointer;
   text-align: left;
+  transition: background 150ms, border-color 150ms, color 150ms;
 }
 
 .paletteButton[aria-pressed="true"] {
-  border-color: rgba(169, 148, 255, 0.62);
-  background: rgba(124, 92, 255, 0.14);
+  border-color: rgba(169, 148, 255, 0.5);
+  border-left-color: #a994ff;
+  background: rgba(124, 92, 255, 0.18);
   color: #fff;
+}
+
+.paletteButton:not([aria-pressed="true"]):hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e4e3e9;
 }
 
 .paletteButton span {
@@ -222,22 +256,22 @@
 .sticker[data-color="white"],
 .paletteButton[data-color="white"] { --sticker-color: #f4f1e8; }
 .sticker[data-color="red"],
-.paletteButton[data-color="red"] { --sticker-color: #e64b3c; }
+.paletteButton[data-color="red"] { --sticker-color: #c82a1a; }
 .sticker[data-color="green"],
 .paletteButton[data-color="green"] { --sticker-color: #35b978; }
 .sticker[data-color="yellow"],
 .paletteButton[data-color="yellow"] { --sticker-color: #f0c928; }
 .sticker[data-color="orange"],
-.paletteButton[data-color="orange"] { --sticker-color: #f18432; }
+.paletteButton[data-color="orange"] { --sticker-color: #ff8800; }
 .sticker[data-color="blue"],
 .paletteButton[data-color="blue"] { --sticker-color: #367bd8; }
 
 .instructions {
   display: grid;
   grid-template-columns: 24px 1fr;
-  gap: 10px 12px;
-  margin: 26px 0;
-  padding-top: 24px;
+  gap: 8px 10px;
+  margin: 18px 0;
+  padding-top: 18px;
   border-top: 1px solid var(--line);
 }
 
@@ -256,6 +290,31 @@
 
 .validateButton {
   width: 100%;
+}
+
+.scrambleButton {
+  width: 100%;
+  margin-top: 16px;
+  border-color: rgba(255, 190, 70, 0.3);
+  background: rgba(255, 190, 70, 0.07);
+  color: #f0d088;
+}
+
+.scrambleButton:hover {
+  background: rgba(255, 190, 70, 0.14);
+  border-color: rgba(255, 190, 70, 0.5);
+}
+
+.solveButton {
+  width: 100%;
+  margin-top: 9px;
+  background: linear-gradient(135deg, #8064ff, #6544e7);
+  color: #fff;
+}
+
+.solveButton:disabled {
+  cursor: wait;
+  opacity: 0.65;
 }
 
 .errorSummary,
@@ -294,10 +353,12 @@
   .controls {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 22px;
+    gap: 16px;
   }
 
   .validateButton,
+  .scrambleButton,
+  .solveButton,
   .errorSummary,
   .validMessage {
     grid-column: 1 / -1;
@@ -324,6 +385,8 @@
   }
 
   .validateButton,
+  .scrambleButton,
+  .solveButton,
   .errorSummary,
   .validMessage {
     grid-column: auto;

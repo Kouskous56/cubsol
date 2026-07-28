@@ -64,6 +64,6 @@ test("production Next.js server renders the CubSol foundation", async (context) 
   assert.match(html, /Quét camera/);
   assert.match(html, /Tải sáu ảnh/);
   assert.match(html, /Điền thủ công/);
-  assert.match(html, /Mở bảng nhập 6 mặt/);
+  assert.match(html, /nhập chính xác 54 ô màu/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });

@@ -42,12 +42,26 @@ Infrastructure triển khai interface do Application/Domain định nghĩa, khô
   sticker tạo một `CubeState` frozen mới; UI không được mutate tuple của Domain.
 - Application Store gọi validator Domain và chỉ giữ mã lỗi/kết quả. Presentation
   chịu trách nhiệm dịch kết quả thành hướng dẫn sửa, không tự triển khai parity.
+- `SolverEngine` là port của Application. Kociemba WASM là adapter Infrastructure,
+  chạy trong Web Worker khi trình duyệt hỗ trợ và fallback về main thread nếu
+  worker không khởi tạo được.
+- Mọi output solver phải parse qua notation Domain và được áp dụng lại bằng
+  move engine; chỉ kết quả thực sự đưa cube về solved mới được commit vào Store.
+- `currentStep` là số move đã hoàn tất, nằm trong `0..solutionMoves.length`.
+
+## Renderer 3D và tutorial
+
+- Three.js renderer được tải bằng client-only dynamic chunk.
+- Geometry và material được chia sẻ giữa các cubie; thao tác tô màu chỉ cập nhật
+  material, không dựng lại toàn bộ scene.
+- Sau animation, renderer dựng lại cubie từ `CubeState` đã xác nhận để loại sai số
+  transform và giữ Domain là nguồn sự thật.
+- Tutorial luôn tái dựng bước đích từ `scrambledState` bất biến và prefix của lời
+  giải; animation tiến/lùi hoàn tất trước khi Store commit `currentStep`.
 
 ## Quyết định chưa triển khai
 
-- Solver WASM và JavaScript fallback.
-- Three.js renderer và animation queue.
-- Image processor, camera và Web Worker.
+- Image processor và camera.
 
 Các module này thuộc các tuần sau và không được mô phỏng bằng dữ liệu giả trong
 bản nền Tuần 1.
